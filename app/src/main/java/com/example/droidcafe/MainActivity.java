@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-    public static final String EXTRA_MESSAGE = "com.example.android.droidcafe.extra.MESSAGE";
+    public static final String EXTRA_MESSAGE = "com.example.android.droidcafe.EXTRA_MESSAGE";
 
 
 
@@ -61,17 +61,42 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (item.getItemId() == R.id.action_order ) {
+            Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+            intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.action_status ) {
+            displayToast(getString(R.string.action_order_message));
+            return true;
+        } else if (item.getItemId() == R.id.action_favorites ) {
+            displayToast(getString(R.string.action_favorites_message));
+            return true;
+        } else if (item.getItemId() == R.id.action_contact ) {
+            displayToast(getString(R.string.action_contact_message));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+        /*
+        switch (item.getItemId()) {
+            case R.id.action_order:
+                displayToast(getString(R.string.action_order_message));
+                return true;
+            case R.id.action_status:
+                displayToast(getString(R.string.action_order_message));
+                return true;
+            case R.id.action_favorites:
+                displayToast(getString(R.string.action_favorites_message));
+                return true;
+            case R.id.action_contact:
+                displayToast(getString(R.string.action_contact_message));
+                return true;
+            default:
+                // Do nothing
+        }
+         */
     }
 
     /**
